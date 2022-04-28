@@ -34,7 +34,12 @@ jobs:
         env:
           BUILD_TAG: ${{ github.event.inputs.build_tag }}
         run: |
-          echo "::set-output name=image_name::steemit/nginx-proxy:${BUILD_TAG}"
+          if [ "${BUILD_TAG}" = "main" ]; then
+            docker_tag="latest";
+          else
+            docker_tag="${BUILD_TAG}"
+          fi
+          echo "::set-output name=image_name::steemit/nginx-proxy:${docker_tag}"
       -
         name: Build and push
         uses: docker/build-push-action@v2
