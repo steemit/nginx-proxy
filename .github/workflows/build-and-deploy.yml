@@ -15,17 +15,24 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
+        name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        id: extract_branch
+      -
         name: Generate Docker Image Name
+        shell: bash
         id: 'docker_image_name'
         env:
-          BUILD_TAG: ${{ github.event.inputs.build_tag }}
+          CURRENT_BRANCH: ${{ steps.extract_branch.outputs.branch }}
         run: |
-          if [ "${BUILD_TAG}" = "main" ]; then
+          set -x
+          if [ "${CURRENT_BRANCH}" = "main" ]; then
             docker_tag="latest";
           else
-            docker_tag="${BUILD_TAG}"
+            docker_tag="${CURRENT_BRANCH}";
           fi
-          echo "::set-output name=image_name::steemit/nginx-proxy:${docker_tag}"
+          echo "::set-output name=image_name::steemit/nginx-proxy:${CURRENT_BRANCH}"
       -
         name: Checkout
         uses: actions/checkout@v2
