@@ -10,7 +10,7 @@ else
   echo "[info] This service is [${APP_TYPE}]"
   config_file="/etc/nginx/conf.template/${APP_TYPE}.conf"
   if [[ -f "${config_file}" ]]; then
-    cp config_file /etc/nginx/http.d/default.conf
+    cp ${config_file} /etc/nginx/http.d/default.conf
   else
     echo "[info] The config file does NOT exist. We will use the default config."
   fi
