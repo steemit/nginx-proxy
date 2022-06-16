@@ -2,6 +2,8 @@
 
 set -x
 
+cat /etc/hosts
+
 cp /etc/nginx/conf.template/nginx.conf /etc/nginx/nginx.conf
 
 if [[ -z "${APP_TYPE}" ]]; then

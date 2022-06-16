@@ -3,7 +3,7 @@
 BLOCKCHAIN_TIME=$(
     curl --silent --max-time 3 \
         --data '{"jsonrpc":"2.0","id":39,"method":"database_api.get_dynamic_global_properties"}' \
-        http://steemd:8090 | jq -r .result.time
+        http://steemd:8091 | jq -r .result.time
 )
 
 # this is a separate check because if the node is actually responding on the open port but
