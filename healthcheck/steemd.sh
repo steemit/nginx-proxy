@@ -21,11 +21,11 @@ fi
 BLOCKCHAIN_TIME=`echo $BLOCKCHAIN_TIME | sed 's/T/\ /g'`
 
 if [[ ! -z  "$BLOCKCHAIN_TIME" ]]; then
-  BLOCKCHAIN_SECS=`date -d $BLOCKCHAIN_TIME +%s`
+  BLOCKCHAIN_SECS=`date -d "$BLOCKCHAIN_TIME" +%s`
   CURRENT_SECS=`date +%s`
 
   # if we're within 60 seconds of current time, call it synced and report healthy
-  BLOCK_AGE=$((${CURRENT_SECS} - ${BLOCKCHAIN_SECS}))
+  BLOCK_AGE=$((CURRENT_SECS-BLOCKCHAIN_SECS))
   if [[ ${BLOCK_AGE} -le 60 ]]; then
     echo Status: 200
     echo Content-type:text/plain
