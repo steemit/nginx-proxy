@@ -10,7 +10,7 @@ BLOCKCHAIN_TIME=$(
 # isn't responding within the given amount of time
 # curl will return a string set to null, which is different than
 # if it's not responding at all and the variable is actually null
-if [[ ${BLOCKCHAIN_TIME} == "null" ]]; then
+if [[ "${BLOCKCHAIN_TIME}" == "null" ]]; then
   echo Status: 502
   echo Content-type:text/plain
   echo
