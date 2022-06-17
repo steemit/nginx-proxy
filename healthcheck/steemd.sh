@@ -25,7 +25,7 @@ if [[ ! -z  "$BLOCKCHAIN_TIME" ]]; then
   CURRENT_SECS=`date +%s`
 
   # if we're within 60 seconds of current time, call it synced and report healthy
-  BLOCK_AGE=$(${CURRENT_SECS} - ${BLOCKCHAIN_SECS})
+  BLOCK_AGE=$((${CURRENT_SECS} - ${BLOCKCHAIN_SECS}))
   if [[ ${BLOCK_AGE} -le 60 ]]; then
     echo Status: 200
     echo Content-type:text/plain
